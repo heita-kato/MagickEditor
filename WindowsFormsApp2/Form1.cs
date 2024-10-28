@@ -55,8 +55,20 @@ namespace WindowsFormsApp2
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
+
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    if (_image != null)
+                    {
+                        // 保存した画像ファイルの削除
+                        //File.Delete(@"C:\test\1.bmp");
+                        //後始末
+                        _image = null;
+                        //終了
+                        //this.Close();
+                        //PictureBox1から削除する
+                        pictureBox1.Image = null;
+                    }
                     LoadImage(openFileDialog.FileName);
                 }
             }
@@ -345,6 +357,9 @@ namespace WindowsFormsApp2
         {
             if (_image != null)
             {
+                //label1にログを残す
+                label1.ForeColor = Color.LawnGreen;
+                label1.Text = "+ Now Loading";
                 var textToWrite = richTextBox1.Text;
                 int intVal1 = Decimal.ToInt32(numericUpDown1.Value);
                 int intVal2 = Decimal.ToInt32(numericUpDown2.Value);
